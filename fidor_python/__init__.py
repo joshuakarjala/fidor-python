@@ -43,7 +43,7 @@ class FidorClient:
             self.base = base
 
         def all(self, params={'page': 1}):
-            return self.base.baseRequest('/accounts', GET)
+            return self.base.baseRequest('/accounts', GET, params=params)
 
         def get(self, account_id):
             return self.base.baseRequest('/accounts', GET, account_id)
@@ -55,10 +55,10 @@ class FidorClient:
         def all(self, for_account=None, params={'page': 1}, transaction_type=None):
             if for_account:
                 if transaction_type:
-                    return self.base.baseRequest('/accounts', GET, for_account, transaction_type)
-                return self.base.baseRequest('/accounts', GET, for_account, 'transactions')
+                    return self.base.baseRequest('/accounts', GET, for_account, transaction_type, params=params)
+                return self.base.baseRequest('/accounts', GET, for_account, 'transactions', params=params)
 
-            return self.base.baseRequest('/transactions', GET)
+            return self.base.baseRequest('/transactions', GET, params=params)
 
         def get(self, transaction_id):
             return self.base.baseRequest('/transactions', GET, transaction_id)
