@@ -42,7 +42,7 @@ class FidorClient:
         def __init__(self, base):
             self.base = base
 
-        def all(self):
+        def all(self, params={'page': 1}):
             return self.base.baseRequest('/accounts', GET)
 
         def get(self, account_id):
@@ -52,7 +52,7 @@ class FidorClient:
         def __init__(self, base):
             self.base = base
 
-        def all(self, for_account=None, transaction_type=None):
+        def all(self, for_account=None, params={'page': 1}, transaction_type=None):
             if for_account:
                 if transaction_type:
                     return self.base.baseRequest('/accounts', GET, for_account, transaction_type)
